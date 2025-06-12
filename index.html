@@ -12,27 +12,45 @@
         font-weight: normal;
         font-style: normal;
     }
-
     </style>
+
+    <script src="./mines.js" ></script>
   </head>
   <body class="bg-[#c0c0c0] px-16 pt-4">
-      <div class="flex justify-between">
-          <div class="bg-black">
-              <p class="text-4xl text-red-500">
-                  000
-              </p>
-          </div>
-          <div>
-              <button class="text-4xl">
-                  ☺️
-              </button>
-          </div>
-          <div class="bg-black">
-              <p class="text-4xl text-red-500">
-                  000
-              </p>
-          </div>
-      </div>
-      <h1 class="text-3xl font-bold underline">    Hello world!  </h1>
+    <div class="flex justify-between">
+        <div class="bg-black">
+            <p id="puntaje" class="text-4xl text-red-500">
+                000
+            </p>
+        </div>
+        <div>
+            <button id="botonmodo" class="text-3xl border rounded-md p-[0.2rem] shadow-md hover:bg-[#a2a2a2]">
+                ☺️
+            </button>
+        </div>
+        <div class="bg-black">
+            <p id="tiempo" class="text-4xl text-red-500">
+                000
+            </p>
+        </div>
+    </div>
+    <dialog id="nombredialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99" open>
+        <input id="nameinput" name="name" type="text" value="" minlength=3 class="border rounded-md p-1" />
+        <label for="name" class="ps-1">
+            Ingrese su nombre
+        </label>
+        <span id="errornameinput" hidden>
+            <hr />
+            El nombre tiene que tener como minimo 3 letras
+        </span>
+        <hr class="mt-1" />
+        <form>
+            <button type="submit" onclick="setNombre(event)" class=" mt-1 p-2 bg-blue-400 hover:bg-blue-300 rounded-md">
+                Iniciar Buscaminas
+            </button>
+        </form>
+    </dialog>
+    <div id="tablero">
+    </div>
   </body>
 </html>
