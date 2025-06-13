@@ -1,6 +1,9 @@
 /** @param {string} id*/
 const $ = (id) => document.getElementById(id);
 
+
+let nombre = "";
+
 /**@param {Event} e*/
 function setNombre(event) {
     event.preventDefault();
@@ -11,15 +14,17 @@ function setNombre(event) {
     }
     errorname.setAttribute("hidden", "");
     $("nombredialog").removeAttribute("open");
+
+    nombre = $("nameinput").value;
+
     hacertablero();
 
 }
 
 function checkNombre() {
     const errorname = $("errornameinput");
-    let name = $("nameinput");
 
-    if (name.value.length < 3) {
+    if ($("nameinput").value.length < 3) {
         errorname.removeAttribute("hidden");
         return;
     }
@@ -30,15 +35,15 @@ document.addEventListener("input", () => checkNombre());
 
 const casih = 8;
 const casiw = 8;
-const minas = 10;
+let minas = 10;
 let acum = 0;
 
+let pantallaminas = 0;
 
 function hacertablero() {
-
     if ($("nombredialog").open === true) return;
 
-    //un toque de cleanup
+//un toque de cleanup
     reaload();
 
     iniciartimer();
@@ -60,7 +65,9 @@ function hacertablero() {
 
     tiles.forEach((tile, index) => {
         tile.dataset.mina = minasIndices.has(index).toString();
+        tile.dataset.flag = "false";
         tile.onclick = ()=>showtile(tile, tiles);
+        tile.oncontextmenu= (event)=> flagtile(tile, event);
     });
 
     tiles.forEach((t, i)=>{
@@ -90,6 +97,26 @@ function hacertablero() {
     });
 }
 
+/**@param {HTMLElement} t
+ * @param {Event} e
+ */
+function flagtile(t, e) {
+    e.preventDefault();
+
+    if (t.dataset.abierta === "true") return;
+    const fl = (t.dataset.flag === "true");
+    if (fl) {
+        pantallaminas++;
+        t.dataset.flag = "false";
+        t.innerHTML = "";
+    } else {
+        pantallaminas--;
+        t.dataset.flag = "true";
+        t.innerHTML = "🚩";
+    }
+    $("bombas").innerHTML = String(pantallaminas).padStart(3, '0');
+}
+
 /**@param {HTMLElement} a
  * @param {HTMLElement[]} tiles
  */
@@ -97,13 +124,14 @@ function showtile(a, tiles){
     if (a.dataset.abierta ==="true") return;
     a.dataset.abierta = "true";
 
-    if (a.dataset.mina === "true"){
-        tiles.filter((x)=> x.dataset.mina === "true").forEach((xx)=>{
+
+    if (a.dataset.mina === "true") {
+        tiles.filter((x) => x.dataset.mina === "true").forEach((xx) => {
             xx.innerHTML = "💣";
             xx.className = "bg-red-400 p-1 m-1 rounded w-10 h-10 border shadow-md";
         });
 
-        tiles.forEach((x)=>{
+        tiles.forEach((x) => {
             showtile(x, tiles);
         });
         $("botonmodo").innerHTML = "😭";
@@ -116,9 +144,30 @@ function showtile(a, tiles){
         a.className = "bg-blue-200 p-1 m-1 rounded w-10 h-10 border shadow-md";
 
         if (num === 0) fillblank(a, tiles);
+
+        let vic = checkVictoria(tiles);
+        if (vic) {
+            detenerTimer();
+            let vicc = $("victoriadialog");
+            vicc.innerHTML = `${nombre}: gano la partida en: ${segundos}`;
+            vicc.setAttribute("open", "");
+        }
     }
+
 }
 
+
+/**@param {HTMLElement[]} ts
+ */
+function checkVictoria(ts) {
+    let tilesCerradas = ts.filter((tile) => tile.dataset.abierta !== "true").length;
+
+    if ($("botonmodo").innerHTML == "😭" ) {
+        return false;
+    }
+
+    return tilesCerradas === minas;
+}
 
 
 let segundos = 0;
@@ -165,9 +214,15 @@ function fillblank(a, tiles){
 }
 
 function reaload(){
+    pantallaminas = minas;
     segundos = 0;
     $("botonmodo").innerHTML = "☺️";
     $("bombas").innerHTML = "0" + String(minas);
-    $("tablero").innerHTML="";
+
+    let tab = $("tablero");
+    tab.innerHTML="";
+    tab.removeAttribute("hidden");
+
     $("tiempo").innerHTML = "000";
+    $("victoriadialog").removeAttribute("open");
 }
