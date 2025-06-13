@@ -46,7 +46,6 @@ function hacertablero() {
 //un toque de cleanup
     reaload();
 
-    iniciartimer();
     /**@type {HTMLElement[]} tiles*/
     let tiles = [];
 
@@ -124,6 +123,7 @@ function showtile(a, tiles){
     if (a.dataset.abierta ==="true") return;
     a.dataset.abierta = "true";
 
+    iniciartimer();
 
     if (a.dataset.mina === "true") {
         tiles.filter((x) => x.dataset.mina === "true").forEach((xx) => {
