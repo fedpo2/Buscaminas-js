@@ -103,6 +103,9 @@ function showtile(a, tiles){
             xx.className = "bg-red-400 p-1 m-1 rounded w-10 h-10 border shadow-md";
         });
 
+        tiles.forEach((x)=>{
+            showtile(x, tiles);
+        });
         $("botonmodo").innerHTML = "😭";
         detenerTimer();
 
@@ -112,7 +115,7 @@ function showtile(a, tiles){
         a.innerHTML = num > 0 ? num : "";
         a.className = "bg-blue-200 p-1 m-1 rounded w-10 h-10 border shadow-md";
 
-        if (num === 0) fillblank(a);
+        if (num === 0) fillblank(a, tiles);
     }
 }
 
@@ -135,7 +138,7 @@ function detenerTimer() {
     }
 }
 
-function fillblank(a){
+function fillblank(a, tiles){
 
     const idParts = a.id.split('-');
     const index = parseInt(idParts[0]) - 1;
@@ -154,7 +157,7 @@ function fillblank(a){
                 const vecinoIndex = ny * casiw + nx;
                 const vecino = $((vecinoIndex + 1) + "-btn");
                 if (vecino && vecino.dataset.abierta !== "true") {
-                    showtile(vecino);
+                    showtile(vecino, tiles);
                 }
             }
         }
