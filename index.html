@@ -26,13 +26,13 @@
         </div>
     </div>
     <dialog id="nombredialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99" open>
-        <form onsubmit="setNombre(event)">
+        <form onsubmit="submitForm(event)">
             <input id="nameinput" name="name" type="text" value="" minlength=3 class="border rounded-md p-1" />
             <label for="name" class="ps-1">
                 Ingrese su nombre
             </label>
-            <span id="errornameinput" hidden>
-                <hr />
+            <span id="errornameinput" hidden >
+                <hr class="mt-1" />
                 El nombre tiene que tener como minimo 3 letras
             </span>
             <hr class="mt-1" />

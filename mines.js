@@ -1,46 +1,51 @@
 "use strict";
 
 /** @param {string} id*/
-const $ = (id) => document.getElementById(id);
+var $ = (id) => document.getElementById(id);
 
+var vicc = $("victoriadialog");
+var nameinput = $("nameinput");
+var errorname = $("errornameinput");
 
-let nombre = "";
+var casih = 8;
+var casiw = 8;
+var minas = 10;
+var acum = 0;
+
+var pantallaminas = 0;
+
+var nombre = "";
+var segundos = 0;
+var timerlock = null;
 
 /**@param {Event} e*/
-function setNombre(event) {
+function submitForm(event) {
     event.preventDefault();
-    const errorname = $("errornameinput");
-    if ($("nameinput").value.length < 3) {
+    if (nameinput.value.length < 3) {
         errorname.removeAttribute("hidden");
         return;
     }
     errorname.setAttribute("hidden", "");
     $("nombredialog").removeAttribute("open");
 
-    nombre = $("nameinput").value;
+    nombre = nameinput.value;
 
     hacertablero();
 
 }
 
 function checkNombre() {
-    const errorname = $("errornameinput");
-
-    if ($("nameinput").value.length < 3) {
+    if (nameinput.value.length < 3) {
         errorname.removeAttribute("hidden");
         return;
     }
     errorname.setAttribute("hidden", "");
 }
 
-document.addEventListener("input", () => checkNombre());
+document.addEventListener("input", function ch(){
+    checkNombre();
+});
 
-const casih = 8;
-const casiw = 8;
-let minas = 10;
-let acum = 0;
-
-let pantallaminas = 0;
 
 function hacertablero() {
     if ($("nombredialog").open === true) return;
@@ -133,12 +138,14 @@ function showtile(a, tiles){
             xx.className = "bg-red-400 p-1 m-1 rounded w-10 h-10 border shadow-md";
         });
 
+        $("botonmodo").innerHTML = "😭";
         tiles.forEach((x) => {
             showtile(x, tiles);
         });
-        $("botonmodo").innerHTML = "😭";
         detenerTimer();
 
+        vicc.innerHTML = `${nombre}: Perdiste la partida`;
+        vicc.setAttribute("open", "");
 
     } else {
         const num = parseInt(a.dataset.numero);
@@ -150,7 +157,6 @@ function showtile(a, tiles){
         let vic = checkVictoria(tiles);
         if (vic) {
             detenerTimer();
-            let vicc = $("victoriadialog");
             vicc.innerHTML = `${nombre}: gano la partida en: ${segundos}`;
             vicc.setAttribute("open", "");
         }
@@ -172,8 +178,6 @@ function checkVictoria(ts) {
 }
 
 
-let segundos = 0;
-let timerlock = null;
 function iniciartimer() {
     if (timerlock !== null) return;
     timerlock = setInterval(() => {
