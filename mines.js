@@ -218,6 +218,7 @@ function fillblank(a, tiles){
 function reaload(){
     pantallaminas = minas;
     segundos = 0;
+    acum = 0;
     $("botonmodo").innerHTML = "☺️";
     $("bombas").innerHTML = "0" + String(minas);
 
