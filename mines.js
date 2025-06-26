@@ -1,3 +1,5 @@
+"use strict";
+
 /** @param {string} id*/
 const $ = (id) => document.getElementById(id);
 
