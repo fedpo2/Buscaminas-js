@@ -72,8 +72,17 @@ function hacertablero() {
     tiles.forEach((tile, index) => {
         tile.dataset.mina = minasIndices.has(index).toString();
         tile.dataset.flag = "false";
-        tile.onclick = ()=>showtile(tile, tiles);
-        tile.oncontextmenu= (event)=> flagtile(tile, event);
+        tile.onclick = function(){
+            showtile(tile, tiles);
+        };
+        tile.oncontextmenu = function (event) {
+            flagtile(tile, event);
+        };
+        tile.onmousedown = function (event) {
+            if (event.buttons === 3) {
+            chording(tile, tiles);
+            }
+        };
     });
 
     tiles.forEach((t, i)=>{
@@ -175,6 +184,61 @@ function checkVictoria(ts) {
     }
 
     return tilesCerradas === minas;
+}
+
+/**
+ * Función de chording - abre todos los vecinos de un tile si el número de banderas
+ * alrededor coincide con el número del tile
+ * @param {HTMLElement} tile - El tile sobre el que hacer chording
+ * @param {HTMLElement[]} tiles - Array de todos los tiles
+ */
+function chording(tile, tiles) {
+    if (tile.dataset.abierta !== "true" || tile.dataset.flag === "true") return;
+
+    var numero = parseInt(tile.dataset.numero);
+    if (numero === 0) return;
+
+    var index = -1;
+    for (var i = 0; i < tiles.length; i++) {
+        if (tiles[i] === tile) {
+            index = i;
+            break;
+        }
+    }
+
+    var x = index % casiw;
+    var y = Math.floor(index / casiw);
+
+    var banderasVecinas = 0;
+    var vecinosSinAbrir = [];
+
+    for (var dx = -1; dx <= 1; dx++) {
+        for (var dy = -1; dy <= 1; dy++) {
+            if (dx === 0 && dy === 0) continue;
+
+            var nx = x + dx;
+            var ny = y + dy;
+
+            if (nx >= 0 && nx < casiw && ny >= 0 && ny < casih) {
+                var vecinoIndex = ny * casiw + nx;
+                var vecino = tiles[vecinoIndex];
+
+                if (vecino) {
+                    if (vecino.dataset.flag === "true") {
+                        banderasVecinas++;
+                    }
+                    else if (vecino.dataset.abierta !== "true") {
+                        vecinosSinAbrir.push(vecino);
+                    }
+                }
+            }
+        }
+    }
+    if (banderasVecinas === numero) {
+        for (var j = 0; j < vecinosSinAbrir.length; j++) {
+            showtile(vecinosSinAbrir[j], tiles);
+        }
+    }
 }
 
 
