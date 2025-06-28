@@ -36,6 +36,24 @@
                 El nombre tiene que tener como minimo 3 letras
             </span>
             <hr class="mt-1" />
+            <h2>
+                Selector Dificultad
+            </h2>
+            <select id="dificultad" name="selectordificultad" class="border rounded p-1">
+                <option value="facil">
+                    Fácil: 8x8 – 10 minas
+                </option>
+                <option value="medio">
+                    Medio: 12x12 – 25 minas
+                </option>
+                <option value="dificil">
+                    Difícil: 16x16 – 40 minas
+                </option>
+                <option value="custom">
+                    Custom
+                </option>
+            </select>
+            <hr class="mt-1" />
             <button type="submit" class=" mt-1 p-2 bg-blue-400 hover:bg-blue-300 rounded-md
                           active:bg-blue-700"">
                 Iniciar Buscaminas
@@ -51,11 +69,9 @@
             </a>
         </div>
     </dialog>
-    <dialog id="victoriadialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99">
-        
-    </dialog>
+    <dialog id="victoriadialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99"></dialog>
     <div class="flex justify-center">
-        <div id="tablero" class="grid grid-cols-8 mt-2 grid-rows-8 gap-0 w-fit">
+        <div id="tablero">
         </div>
     </div>
 

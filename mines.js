@@ -6,6 +6,8 @@ var $ = (id) => document.getElementById(id);
 var vicc = $("victoriadialog");
 var nameinput = $("nameinput");
 var errorname = $("errornameinput");
+var dificultad = $("dificultad");
+var tablero = $("tablero");
 
 var casih = 8;
 var casiw = 8;
@@ -29,7 +31,7 @@ function submitForm(event) {
     $("nombredialog").removeAttribute("open");
 
     nombre = nameinput.value;
-
+    setDificultad();
     hacertablero();
 
 }
@@ -42,10 +44,35 @@ function checkNombre() {
     errorname.setAttribute("hidden", "");
 }
 
-document.addEventListener("input", function ch(){
+document.addEventListener("input", function ch() {
     checkNombre();
 });
 
+function setDificultad() {
+    switch (dificultad.value) {
+    case "facil":
+        casih = 8;
+        casiw = 8;
+        minas = 10;
+        break;
+
+    case "medio":
+        casih = 12;
+        casiw = 12;
+        minas = 25;
+        break;
+
+    case "dificil":
+        casih = 16;
+        casiw = 16;
+        minas = 40;
+        break;
+
+    case "custom":
+        break;
+
+    }
+}
 
 function hacertablero() {
     if ($("nombredialog").open === true) return;
@@ -85,13 +112,13 @@ function hacertablero() {
         };
     });
 
-    tiles.forEach((t, i)=>{
+    tiles.forEach((t, i) => {
         const x = i % casiw;
-        const y = Math.floor(i/casiw);
-        let num =0;
+        const y = Math.floor(i / casiw);
+        let num = 0;
 
-        for (let dx = -1; dx<=1; ++dx){
-            for(let dy = -1; dy<=1; ++dy){
+        for (let dx = -1; dx <= 1; ++dx) {
+            for (let dy = -1; dy <= 1; ++dy) {
                 if (dx == 0 && dy == 0) continue;
                 const nx = x + dx;
                 const ny = y + dy;
@@ -106,10 +133,15 @@ function hacertablero() {
         t.dataset.numero = num;
     });
 
-    let tablero = $("tablero");
-    tiles.forEach((x) => {
-        tablero.appendChild(x);
-    });
+    tablero.style.marginTop = "1rem";
+    tablero.style.display = "grid";
+    tablero.style.gridTemplateColumns= `repeat(${casiw}, minmax(0,1fr))`;
+
+
+
+    for (var i = 0; i < tiles.length; i++) {
+        tablero.appendChild(tiles[i]);
+    }
 }
 
 /**@param {HTMLElement} t
@@ -241,6 +273,9 @@ function chording(tile, tiles) {
     }
 }
 
+function guardar(){ //WIP
+    
+}
 
 function iniciartimer() {
     if (timerlock !== null) return;
