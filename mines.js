@@ -11,6 +11,12 @@ var nameinput = $("nameinput");
 var errorname = $("errornameinput");
 var dificultad = $("dificultad");
 var tablero = $("tablero");
+var customoptions = $("customoptions");
+var inputAlto = $("alto");
+var inputAncho = $("ancho");
+var inputMinas = $("minas");
+var nombredialog = $("nombredialog");
+var errorCustomInput = $("custominputerror");
 
 var casih = 8;
 var casiw = 8;
@@ -31,7 +37,17 @@ function submitForm(event) {
         return;
     }
     errorname.setAttribute("hidden", "");
-    $("nombredialog").removeAttribute("open");
+
+    var total = inputAlto.value * inputAncho.value;
+
+    if (total <= inputMinas.value) {
+        errorCustomInput.removeAttribute("hidden");
+        return;
+    } else {
+        errorCustomInput.setAttribute("hidden", "");
+    }
+
+    nombredialog.removeAttribute("open");
 
     nombre = nameinput.value;
     setDificultad();
@@ -49,7 +65,29 @@ function checkNombre() {
 
 document.addEventListener("input", function ch() {
     checkNombre();
+    showCustomOptions();
+    checkCustomInputs();
 });
+
+function showCustomOptions() {
+    if (dificultad.value === "custom") {
+        customoptions.removeAttribute("hidden");
+    } else {
+        customoptions.setAttribute("hidden", "");
+    }
+}
+showCustomOptions();
+
+function checkCustomInputs() {
+    var total = inputAlto.value * inputAncho.value;
+
+    if (total <= inputMinas.value) {
+        errorCustomInput.removeAttribute("hidden");
+    } else {
+        errorCustomInput.setAttribute("hidden", "");
+    }
+}
+checkCustomInputs();
 
 function setDificultad() {
     switch (dificultad.value) {
@@ -72,6 +110,9 @@ function setDificultad() {
         break;
 
     case "custom":
+        casih = inputAlto.value;
+        casiw = inputAncho.value;
+        minas = inputMinas.value;
         break;
 
     }

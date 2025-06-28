@@ -53,6 +53,27 @@
                     Custom
                 </option>
             </select>
+            <div class="mt-1 flex-col flex" hidden id="customoptions">
+                <input id="alto" name="alto" type="number" step="1" min="1" value="8" class="border p-1 mt-1 rounded" />
+                <label for="alto">
+                    Alto
+                </label>
+
+                <input name="ancho" id="ancho" type="number" min="1" step="1" value="8" class="border p-1 rounded"/>
+                <label for="ancho">
+                    Ancho
+                </label>
+
+                <input name="minas" id="minas" type="number" step="1" value="10" class="border p-1 rounded"/>
+                <label for="minas">
+                    Minas
+                </label>
+            </div>
+            <div id="custominputerror" class="mt-1" hidden>
+                <hr/>
+                No puede haber más minas que tiles.
+            </div>
+
             <hr class="mt-1" />
             <button type="submit" class=" mt-1 p-2 bg-blue-400 hover:bg-blue-300 rounded-md
                           active:bg-blue-700"">
