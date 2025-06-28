@@ -101,6 +101,7 @@ function hacertablero() {
 
     tiles.forEach((tile, index) => {
         tile.dataset.mina = minasIndices.has(index).toString();
+        tile.dataset.abierta = "false";
         tile.dataset.flag = "false";
         tile.onclick = function(){
             showtile(tile, tiles);
@@ -212,13 +213,13 @@ function showtile(a, tiles){
 /**@param {HTMLElement[]} ts
  */
 function checkVictoria(ts) {
-    let tilesCerradas = ts.filter((tile) => tile.dataset.abierta !== "true").length;
+    let tilesCerradas = ts.filter((tile) => tile.dataset.abierta === "false" && tile.dataset.flag === "false").length;
 
-    if ($("botonmodo").innerHTML == "😭" ) {
+    if ($("botonmodo").innerHTML === "😭" ) {
         return false;
     }
 
-    return tilesCerradas === minas;
+    return tilesCerradas === Number(minas);
 }
 
 /**
