@@ -1,6 +1,9 @@
 "use strict";
 
-/** @param {string} id*/
+/**
+ * Me ahorra un monton de codigo y era visualmente menos ruidoso usar un arrow func
+ * @param {string} id
+ */
 var $ = (id) => document.getElementById(id);
 
 var vicc = $("victoriadialog");
