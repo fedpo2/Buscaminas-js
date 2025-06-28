@@ -219,7 +219,7 @@ function checkVictoria(ts) {
         return false;
     }
 
-    return tilesCerradas === Number(minas);
+    return tilesCerradas === Number(pantallaminas);
 }
 
 /**
@@ -327,7 +327,7 @@ function reaload(){
     segundos = 0;
     acum = 0;
     $("botonmodo").innerHTML = "☺️";
-    $("bombas").innerHTML = "0" + String(minas);
+    $("bombas").innerHTML = String(minas).padStart(3, '0');
 
     let tab = $("tablero");
     tab.innerHTML="";
