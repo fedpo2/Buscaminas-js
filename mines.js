@@ -19,6 +19,7 @@ var inputAncho = $("ancho");
 var inputMinas = $("minas");
 var nombredialog = $("nombredialog");
 var errorCustomInput = $("custominputerror");
+var resultadoDialog = $("resultadodialog");
 
 var casih = 8;
 var casiw = 8;
@@ -409,4 +410,36 @@ function obtenerDificultad(){
     case "custom":
         return `alto ${inputAlto.value},  Ancho: ${inputAncho.value}, Minas: ${inputMinas.value}`;
     }
+}
+
+function showResultados() {
+    nombredialog.toggleAttribute("open");
+
+    /**@type Registro[]*/
+    var list = JSON.parse(localStorage.getItem("resultados") || []);
+
+    list.sort(function (a,b) {
+        return a.segundos - b.segundos;
+    });
+
+    var listhtml = document.createElement("ol");
+
+    for(var i = 0; i < list.length; i++) {
+        var a = document.createElement("li");
+
+        var fecha = new Date(Number(list[i].fecha));
+        var año = fecha.getFullYear();
+        var mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        var dia = String(fecha.getDate()).padStart(2, '0');
+        var horas = String(fecha.getHours()).padStart(2, '0');
+        var minutos = String(fecha.getMinutes()).padStart(2, '0');
+        var segundos = String(fecha.getSeconds()).padStart(2, '0');
+
+        a.innerHTML = `Nombre: ${list[i].nombre}, Segundos: ${list[i].segundos}, Dificultad: ${list[i].dificultad}, Fecha: ${año}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
+
+        listhtml.appendChild(a);
+    }
+
+    resultadoDialog.appendChild(listhtml);
+    resultadoDialog.toggleAttribute("open");
 }

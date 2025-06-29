@@ -81,20 +81,29 @@
             </button>
         </form>
         <hr class="mt-1 mb-1" />
-        <div class="flex gap-2">
-            <a href="./contacto/" title="Contacto" target="_blank">
-                <img alt="Contacto" src="./info-circle.svg"/>
-            </a>
-            <a href="https://github.com/fedpo2/Buscaminas-js/" target="_blank" tool title="Codigo">
-                <img alt="codigo" src="./code.svg"/>
-            </a>
+        <div class="flex  justify-between">
+            <div class="flex gap-2">
+                <a href="./contacto/" title="Contacto" target="_blank">
+                    <img alt="Contacto" src="./info-circle.svg"/>
+                </a>
+                <a href="https://github.com/fedpo2/Buscaminas-js/" target="_blank" tool title="Codigo">
+                    <img alt="codigo" src="./code.svg"/>
+                </a>
+            </div>
+            <button onclick="showResultados()" title="Resultados">
+                <img alt="resultados" src="./scoreboard.svg" />
+            </button>
         </div>
     </dialog>
     <dialog id="victoriadialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99"></dialog>
-    <div class="flex justify-center">
+
+    <dialog id="resultadodialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99"></dialog>
+
+<div class="flex justify-center">
         <div id="tablero">
         </div>
-    </div>
+</div>
+
 
     <script src="./mines.js"></script>
     </body>
