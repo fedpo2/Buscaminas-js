@@ -1,5 +1,7 @@
 "use strict";
 
+// Aviso uso comentarios de jsdoc para tener tipos de dato en el "ide"
+
 /**
  * Me ahorra un monton de codigo y era visualmente menos ruidoso usar un arrow func
  * @param {string} id
@@ -245,6 +247,12 @@ function showtile(a, tiles){
             detenerTimer();
             vicc.innerHTML = `${nombre}: gano la partida en: ${segundos}`;
             vicc.setAttribute("open", "");
+
+            guardar({
+                nombre,
+                segundos,
+                fecha: Date.now(),
+                dificultad: obtenerDificultad()});
         }
     }
 
@@ -318,8 +326,23 @@ function chording(tile, tiles) {
     }
 }
 
-function guardar(){ //WIP
-    
+/**
+ * @typedef Registro
+ * @property {string} nombre
+ * @property {number} segundos
+ * @property {Date} fecha
+ * @property {string} dificultad
+ */
+
+/**
+ * @param {Registro} reg
+ */
+function guardar(reg) {
+    /**@type Registro[] */
+    var resultados = JSON.parse(localStorage.getItem("resultados") || []);
+
+    resultados.push(reg);
+    localStorage.setItem("resultados", JSON.stringify(resultados));
 }
 
 function iniciartimer() {
@@ -376,4 +399,14 @@ function reaload(){
 
     $("tiempo").innerHTML = "000";
     $("victoriadialog").removeAttribute("open");
+}
+
+function obtenerDificultad(){
+    switch (dificultad.value) {
+    case "facil": case "medio": case "dificil":
+        return dificultad.value;
+
+    case "custom":
+        return `alto ${inputAlto.value},  Ancho: ${inputAncho.value}, Minas: ${inputMinas.value}`;
+    }
 }
