@@ -20,6 +20,9 @@ var inputMinas = $("minas");
 var nombredialog = $("nombredialog");
 var errorCustomInput = $("custominputerror");
 var resultadoDialog = $("resultadodialog");
+var tableBody = $("tablebody");
+var sortImgNormal = $("sortNormal");
+var sortImgFecha = $("sortFecha");
 
 var casih = 8;
 var casiw = 8;
@@ -422,10 +425,8 @@ function showResultados() {
         return a.segundos - b.segundos;
     });
 
-    var listhtml = document.createElement("ol");
-
-    for(var i = 0; i < list.length; i++) {
-        var a = document.createElement("li");
+    for (var i = 0; i < list.length; i++) {
+        var a = document.createElement("tr");
 
         var fecha = new Date(Number(list[i].fecha));
         var año = fecha.getFullYear();
@@ -435,11 +436,71 @@ function showResultados() {
         var minutos = String(fecha.getMinutes()).padStart(2, '0');
         var segundos = String(fecha.getSeconds()).padStart(2, '0');
 
-        a.innerHTML = `Nombre: ${list[i].nombre}, Segundos: ${list[i].segundos}, Dificultad: ${list[i].dificultad}, Fecha: ${año}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
 
-        listhtml.appendChild(a);
+        var tdnombre = document.createElement("td");
+        tdnombre.textContent = list[i].nombre;
+        tdnombre.style.paddingRight = "1rem";
+
+        var tdsegundo = document.createElement("td");
+        tdsegundo.textContent = list[i].segundos;
+        tdsegundo.style.paddingRight = "1rem";
+
+        var tddificultad = document.createElement("td");
+        tddificultad.textContent = list[i].dificultad;
+        tddificultad.style.paddingRight = "1rem";
+
+        var tdfecha = document.createElement("td");
+        tdfecha.textContent = `${año} -${mes} -${dia} ${horas}:${minutos}:${segundos}`;
+
+        a.appendChild(tdnombre);
+        a.appendChild(tdsegundo);
+        a.appendChild(tddificultad);
+        a.appendChild(tdfecha);
+
+
+        tableBody.appendChild(a);
     }
 
-    resultadoDialog.appendChild(listhtml);
     resultadoDialog.toggleAttribute("open");
+}
+
+function closeResultadoDialog() {
+    resultadoDialog.toggleAttribute("open");
+    tableBody.innerHTML = "";
+    nombredialog.toggleAttribute("open");
+}
+
+function cambiarsort() {
+    sortImgNormal.toggleAttribute("hidden");
+    sortImgFecha.toggleAttribute("hidden");
+
+    var b = sortImgFecha.hasAttribute("hidden");
+    var celdas = Array.from(tableBody.children);
+
+    if (b) {
+        celdas.sort(function (a, b) {
+            var SegundosA = a.children[1].textContent;
+            var SegundosB = b.children[1].textContent;
+
+            var Sega = Number(SegundosA);
+            var Segb = Number(SegundosB);
+
+            return Sega - Segb;
+        });
+    } else {
+        celdas.sort(function (a, b) {
+            var fechaTextoA = a.children[3].textContent;
+            var fechaTextoB = b.children[3].textContent;
+
+            var fechaA = new Date(fechaTextoA.replace(/(\d+) -(\d+) -(\d+)/, '$1-$2-$3'));
+            var fechaB = new Date(fechaTextoB.replace(/(\d+) -(\d+) -(\d+)/, '$1-$2-$3'));
+
+            return fechaB - fechaA;
+        });
+    }
+    tableBody.innerHTML = "";
+    for(var i = 0 ; i<celdas.length; i++){
+        tableBody.appendChild(celdas[i]);
+    }
+
 }

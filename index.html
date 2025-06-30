@@ -97,12 +97,46 @@
     </dialog>
     <dialog id="victoriadialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99"></dialog>
 
-    <dialog id="resultadodialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99"></dialog>
+    <dialog id="resultadodialog" class="p-3 rounded-md border mx-auto flex-col justify-center h-fit my-25 z-99">
+        <div class="flex justify-between">
+            <button onclick="closeResultadoDialog()">
+                <img alt="Cerrar" src="./cross.svg" />
+            </button>
+            Resultados
+            <button onclick="cambiarsort()">
+                <img alt="Por Tiempo" src="./sort-normal.svg" id="sortNormal" />
+                <img alt="Por Fecha" src="./sort-fecha.svg" id="sortFecha" hidden/>
+            </button>
+        </div>
+        <hr class="my-1" />
+        <table>
+            <thead>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Segundos
+                </th>
+                <th>
+                    Dificultad
+                </th>
+                <th>
+                    Minas
+                </th>
+                <th>
+                    Fecha
+                </th>
+            </thead>
+            <tbody id="tablebody">
 
-<div class="flex justify-center">
+            </tbody>
+        </table>
+    </dialog>
+
+    <div class="flex justify-center">
         <div id="tablero">
         </div>
-</div>
+    </div>
 
 
     <script src="./mines.js"></script>
