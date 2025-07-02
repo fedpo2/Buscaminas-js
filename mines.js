@@ -136,7 +136,7 @@ function hacertablero() {
     for (let i = casih * casiw; i > 0 ;i-- ) {
         let a = document.createElement("button");
         a.id=++acum + "-btn";
-        a.className = "bg-[#b2b2b2] p-1 m-1 rounded w-10 h-10 border shadow-md hover:bg-[#d1d1d1] active:bg-[#a1a1a1]";
+        a.className = "tile";
         tiles.push(a);
     }
 
@@ -188,8 +188,6 @@ function hacertablero() {
     tablero.style.display = "grid";
     tablero.style.gridTemplateColumns= `repeat(${casiw}, minmax(0,1fr))`;
 
-
-
     for (var i = 0; i < tiles.length; i++) {
         tablero.appendChild(tiles[i]);
     }
@@ -227,7 +225,7 @@ function showtile(a, tiles){
     if (a.dataset.mina === "true") {
         tiles.filter((x) => x.dataset.mina === "true").forEach((xx) => {
             xx.innerHTML = "💣";
-            xx.className = "bg-red-400 p-1 m-1 rounded w-10 h-10 border shadow-md";
+            xx.className = "explotado";
         });
 
         $("botonmodo").innerHTML = "😭";
@@ -242,7 +240,7 @@ function showtile(a, tiles){
     } else {
         const num = parseInt(a.dataset.numero);
         a.innerHTML = num > 0 ? num : "";
-        a.className = "bg-blue-200 p-1 m-1 rounded w-10 h-10 border shadow-md";
+        a.className = "tile-abierta";
 
         if (num === 0) fillblank(a, tiles);
 
