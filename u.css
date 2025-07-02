@@ -105,6 +105,9 @@ table {
     margin-bottom: 6rem;
     z-index: 99;
 
+    background-color: var(--bg-dialog);
+    color: var(--text-color);
+
     display: none;
 }
 
@@ -234,9 +237,11 @@ hr {
 
 button{
     border:0;
+    border-radius: 0.25rem;
 }
 
 :root {
+    --bg-dialog: white;
     --bg-body: #c0c0c0;
     --bg-tile: #f2f2f2;
     --bg-tile-hover: #d1d1d1;
@@ -252,6 +257,7 @@ button{
 }
 
 body[dark] {
+    --bg-dialog: #444444;
     --bg-body: #1e1e1e;
     --bg-tile: #2d2d2d;
     --bg-tile-hover: #3d3d3d;
