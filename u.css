@@ -49,7 +49,7 @@ table {
 /*Aca termina el reset css*/
 
 .body{
-    background-color: #c0c0c0;
+    background-color: var(--bg-body);
     padding-top: 1rem;
     padding-left: 4rem;
     padding-right: 4rem;
@@ -69,7 +69,7 @@ table {
 
 .marcador{
     font-size: 2.25rem;
-    line-height: 2.25rem; 
+    line-height: 2.25rem;
     color:oklch(63.7% 0.237 25.331);
 }
 .botonmodo {
@@ -79,16 +79,16 @@ table {
     border-radius: 0.375rem;
     padding: 0.2rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    background-color: #717171;
+    background-color: var(--bg-botonmodo);
     transition: background-color 0.15s ease-in-out;
 }
 
 .botonmodo:hover {
-    background-color: #b2b2b2;
+    background-color: var(--bg-botoniniciar-hover);
 }
 
 .botonmodo:active {
-    background-color: #929292;
+    background-color: var(--bg-botonmodo-active);
 }
 
 .dialogo {
@@ -127,7 +127,7 @@ table {
 }
 .border {
     border-width: 1px;
-    border-color: currentColor;
+    border-color: var(--border-color);
     border-style: solid;
 }
 
@@ -146,21 +146,21 @@ table {
 .boton-iniciar {
     margin-top: 0.25rem;
     padding: 0.5rem;
-    background-color: #60a5fa;
+    background-color: var(--bg-botoniniciar);
     border-radius: 0.375rem;
     transition: background-color 0.15s ease-in-out;
 }
 
 .boton-iniciar:hover {
-    background-color: #93c5fd;
+    background-color: var(--bg-botoniniciar-hover);
 }
 
 .boton-iniciar:active {
-    background-color: #1d4ed8;
+    background-color: var(--bg-botoniniciar-active);
 }
 
 .gap-2 {
-    gap: 0.5rem; 
+    gap: 0.5rem;
 }
 
 .my-1{
@@ -170,7 +170,7 @@ table {
 
 hr {
     border: 0;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--border-color);
 }
 
 .justify-center {
@@ -182,7 +182,7 @@ hr {
 }
 
 .tile {
-    background-color: #b2b2b2;
+    background-color: var(--bg-tile);
     padding: 0.25rem;
     margin: 0.25rem;
     border-radius: 0.25rem;
@@ -195,11 +195,11 @@ hr {
 }
 
 .tile:hover {
-    background-color: #d1d1d1;
+    background-color: var(--bg-tile-hover);
 }
 
 .tile:active {
-    background-color: #a1a1a1;
+    background-color: var(--bg-tile-active);
 }
 
 .explotado {
@@ -234,4 +234,34 @@ hr {
 
 button{
     border:0;
+}
+
+:root {
+    --bg-body: #c0c0c0;
+    --bg-tile: #f2f2f2;
+    --bg-tile-hover: #d1d1d1;
+    --bg-tile-active: #a1a1a1;
+    --bg-botonmodo: #717171;
+    --bg-botonmodo-hover: #b2b2b2;
+    --bg-botonmodo-active: #929292;
+    --bg-botoniniciar: #60a5fa;
+    --bg-botoniniciar-hover: #93c5fd;
+    --bg-botoniniciar-active: #1d4ed8;
+    --text-color: black;
+    --border-color: black;
+}
+
+body[dark] {
+    --bg-body: #1e1e1e;
+    --bg-tile: #2d2d2d;
+    --bg-tile-hover: #3d3d3d;
+    --bg-tile-active: #1f1f1f;
+    --bg-botonmodo: #444444;
+    --bg-botonmodo-hover: #555555;
+    --bg-botonmodo-active: #333333;
+    --bg-botoniniciar: #3b82f6;
+    --bg-botoniniciar-hover: #60a5fa;
+    --bg-botoniniciar-active: #1e4edd;
+    --text-color: white;
+    --border-color: white;
 }
