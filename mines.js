@@ -23,6 +23,8 @@ var resultadoDialog = $("resultadodialog");
 var tableBody = $("tablebody");
 var sortImgNormal = $("sortNormal");
 var sortImgFecha = $("sortFecha");
+var sol = $("sol");
+var luna = $("luna");
 
 var casih = 8;
 var casiw = 8;
@@ -122,6 +124,26 @@ function setDificultad() {
         break;
 
     }
+}
+
+function ponerTema(){
+    var tema = localStorage.getItem("tema")||"claro";
+    if (tema === "oscuro"){
+        document.body.setAttribute("dark", "");
+        sol.toggleAttribute("hidden");
+        return;
+    }
+
+    luna.toggleAttribute("hidden");
+}
+ponerTema();
+
+function cambiarModo() {
+    sol.toggleAttribute("hidden");
+    luna.toggleAttribute("hidden");
+    document.body.toggleAttribute("dark");
+    localStorage.setItem("tema", localStorage.getItem("tema")==="oscuro"?"claro":"oscuro");
+
 }
 
 function hacertablero() {
