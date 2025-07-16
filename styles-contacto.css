@@ -1,0 +1,42 @@
+.contact-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 40px;
+  padding: 20px;
+  flex-wrap: wrap;
+  font-size: x-large;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.contact-card img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+.contact-text {
+  margin-top: 10px;
+  border: 2px solid rgb(12, 3, 95);
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.regresar-buscaminas{
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+  justify-items: center;
+  box-sizing: border-box;
+  justify-content: center;  
+  flex-wrap: wrap;
+  font-size: x-large;
+  text-align: center;
+}
