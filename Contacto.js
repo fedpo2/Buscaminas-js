@@ -4,14 +4,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contactForm');
     const clickSound = document.getElementById('clickSound');
 
-    // Mostrar/Ocultar el formulario
     toggleBtn.addEventListener('click', function () {
         formContainer.style.display = (formContainer.style.display === 'none') ? 'block' : 'none';
     });
 
-    // Validación y apertura de mailto
     contactForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // ← Esto previene el envío real
+        event.preventDefault();
 
         const name = document.getElementById('name').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -47,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = mailtoLink;
     });
 
-    // Sonido de clic
     document.addEventListener('click', function () {
         clickSound.currentTime = 0;
         clickSound.play();
