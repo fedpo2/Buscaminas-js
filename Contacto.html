@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./u.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="./styles-contacto.css">
+    <script src="Contacto.js"></script>
     <title>Pagina contacto</title>
 </head>
 <body class="body">
@@ -35,5 +36,22 @@
     </div>
     <footer class="flex justify-center">
         <a href="index.html" class="regresar-buscaminas boton-iniciar">Regresar al Buscaminas</a>
+
+        <button id="toggleFormBtn">Mostrar Formulario</button>
+            <div id="formContainer" style="display: none;">
+                <form id="contactForm">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name"><br>
+                    <label for="email">Correo:</label>
+                    <input type="text" id="email" name="email"><br>
+
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message"></textarea><br>
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
+<audio id="clickSound" src="SonidoClick.mp3" preload="auto"></audio>
     </footer>
 </body>
