@@ -1,9 +1,4 @@
 .contact-container {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 40px;
-  padding: 20px;
-  flex-wrap: wrap;
   font-size: x-large;
 }
 
@@ -23,20 +18,36 @@
 .contact-text {
   margin-top: 10px;
   border: 2px solid rgb(12, 3, 95);
-  display: inline-block;
   width: 100%;
   box-sizing: border-box;
+  line-height: 1.2lh;
+}
+
+
+.regresar-buscaminas{
+  margin-top: 40px;
+  justify-items: center;
+  justify-content: center;
+  font-size: x-large;
   text-align: center;
 }
 
-.regresar-buscaminas{
-  display: flex;
-  gap: 40px;
-  margin-top: 40px;
-  justify-items: center;
-  box-sizing: border-box;
-  justify-content: center;  
-  flex-wrap: wrap;
-  font-size: x-large;
-  text-align: center;
+.dialogo {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    border-width: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: fit-content;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    z-index: 99;
+
+    background-color: var(--bg-dialog);
+    color: var(--text-color);
+
+    display: none;
 }

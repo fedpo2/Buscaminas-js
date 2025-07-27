@@ -114,6 +114,11 @@ table {
 .dialogo[open] {
     display: flex;
 }
+
+.bg-white{
+    background-color: white;
+}
+
 .p-1{
     padding: 0.25rem 0.25rem 0.25rem 0.25rem;
 }
