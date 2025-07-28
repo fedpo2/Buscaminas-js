@@ -51,3 +51,35 @@
 
     display: none;
 }
+
+#formContainer {
+  margin: 20px auto;
+  padding: 15px;
+  border: 2px solid #0c035f;
+  background-color: #f8f8f8;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+#formContainer label,
+#formContainer input,
+#formContainer textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: large;
+  box-sizing: border-box;
+}
+
+#toggleFormBtn {
+  margin: 20px auto;
+  display: block;
+  padding: 10px 20px;
+  font-size: large;
+  background-color: #0c035f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}

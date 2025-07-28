@@ -30,6 +30,7 @@ var casih = 8;
 var casiw = 8;
 var minas = 10;
 var acum = 0;
+var guardado = false;
 
 var pantallaminas = 0;
 
@@ -362,13 +363,16 @@ function chording(tile, tiles) {
  * @param {Registro} reg
  */
 function guardar(reg) {
-    /**@type Registro[] */
-    var resultados = JSON.parse(localStorage.getItem("resultados") || []);
-
-    resultados.push(reg);
-    localStorage.setItem("resultados", JSON.stringify(resultados));
+    if (guardado) return;
+    try {
+        const resultados = JSON.parse(localStorage.getItem("resultados") ?? "[]");
+        resultados.push(reg);
+        localStorage.setItem("resultados", JSON.stringify(resultados));
+        guardado = true;
+    } catch (error) {
+        console.error("Error al guardar en localStorage:", error);
+    }
 }
-
 function iniciartimer() {
     if (timerlock !== null) return;
     timerlock = setInterval(() => {
@@ -414,6 +418,7 @@ function reaload(){
     pantallaminas = minas;
     segundos = 0;
     acum = 0;
+    guardado= false;
     $("botonmodo").innerHTML = "☺️";
     $("bombas").innerHTML = String(minas).padStart(3, '0');
 
@@ -439,7 +444,7 @@ function showResultados() {
     nombredialog.toggleAttribute("open");
 
     /**@type Registro[]*/
-    var list = JSON.parse(localStorage.getItem("resultados") || []);
+    var list = JSON.parse(localStorage.getItem("resultados") || "[]");
 
     list.sort(function (a,b) {
         return a.segundos - b.segundos;
@@ -479,6 +484,30 @@ function showResultados() {
 
 
         tableBody.appendChild(a);
+    }
+    if (list.length == 0){
+        var a = document.createElement("tr");
+
+        var tdnombre = document.createElement("td");
+        tdnombre.textContent = "No hay Resultados para mostrar";
+        tdnombre.style.paddingRight = "1rem";
+
+        var tdsegundo = document.createElement("td");
+        tdsegundo.style.paddingRight = "1rem";
+
+        var tddificultad = document.createElement("td");
+        tddificultad.style.paddingRight = "1rem";
+
+        var tdfecha = document.createElement("td");
+
+        a.appendChild(tdnombre);
+        a.appendChild(tdsegundo);
+        a.appendChild(tddificultad);
+        a.appendChild(tdfecha);
+
+
+        tableBody.appendChild(a);
+
     }
 
     resultadoDialog.toggleAttribute("open");
