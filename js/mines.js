@@ -9,6 +9,15 @@ var $ = function(id){
     return document.getElementById(id);
 }
 
+// Esto llama funciones del construir.js (lo queria llamar build.js pero no sabia si contaba como tener nombres en
+// ingles)
+document.body.appendChild(crearBarraSuperior());
+document.body.appendChild(crearDialog());
+document.body.appendChild(crearVictoriaDiag());
+document.body.appendChild(crearContenedorTablero());
+document.body.appendChild(crearDialogoResultados());
+
+
 var vicc = $("victoriadialog");
 var nameinput = $("nameinput");
 var errorname = $("errornameinput");

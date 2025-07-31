@@ -284,3 +284,8 @@ body[dark] {
     --text-color: white;
     --border-color: white;
 }
+
+.tableroContenedor {
+    display:flex;
+    justify-content: center;
+}
