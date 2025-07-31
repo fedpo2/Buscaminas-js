@@ -155,18 +155,18 @@ function hacertablero() {
     limpiarVariables();
 
     /**@type {HTMLElement[]} tiles*/
-    let tiles = [];
+    var tiles = [];
 
-    for (let i = casih * casiw; i > 0 ;i-- ) {
-        let a = document.createElement("button");
+    for (var i = casih * casiw; i > 0 ;i-- ) {
+        var a = document.createElement("button");
         a.id=++acum + "-btn";
         a.className = "tile";
         tiles.push(a);
     }
 
-    const minasIndices = new Set();
+    var minasIndices = new Set();
     while (minasIndices.size < minas) {
-        const rand = Math.floor(Math.random() * tiles.length);
+        var rand = Math.floor(Math.random() * tiles.length);
         minasIndices.add(rand);
     }
 
@@ -188,17 +188,17 @@ function hacertablero() {
     });
 
     tiles.forEach(function(t, i) {
-        const x = i % casiw;
-        const y = Math.floor(i / casiw);
-        let num = 0;
+        var x = i % casiw;
+        var y = Math.floor(i / casiw);
+        var num = 0;
 
-        for (let dx = -1; dx <= 1; ++dx) {
-            for (let dy = -1; dy <= 1; ++dy) {
+        for (var dx = -1; dx <= 1; ++dx) {
+            for (var dy = -1; dy <= 1; ++dy) {
                 if (dx == 0 && dy == 0) continue;
-                const nx = x + dx;
-                const ny = y + dy;
+                var nx = x + dx;
+                var ny = y + dy;
                 if (nx >= 0 && nx < casiw && ny >= 0 && ny < casih) {
-                    const vecinoIndex = ny * casiw + nx;
+                    var vecinoIndex = ny * casiw + nx;
                     if (tiles[vecinoIndex].dataset.mina === "true") {
                         num++;
                     }
@@ -224,7 +224,7 @@ function flagtile(t, e) {
     e.preventDefault();
 
     if (t.dataset.abierta === "true") return;
-    const fl = (t.dataset.flag === "true");
+    var fl = (t.dataset.flag === "true");
     if (fl) {
         pantallaminas++;
         t.dataset.flag = "false";
@@ -247,7 +247,7 @@ function showtile(celdaElejida, tiles){
     iniciartimer();
 
     if (celdaElejida.dataset.mina === "true") {
-        tiles.filter(function(celda) celda.dataset.mina === "true").forEach((celdaConBomba)  {
+        tiles.filter(function(celda) {celda.dataset.mina === "true"}).forEach(function (celdaConBomba) {
             celdaConBomba.innerHTML = "💣";
             celdaConBomba.className = "explotado";
         });
@@ -262,13 +262,13 @@ function showtile(celdaElejida, tiles){
         vicc.setAttribute("open", "");
 
     } else {
-        const num = parseInt(celdaElejida.dataset.numero);
+        var num = parseInt(celdaElejida.dataset.numero);
         celdaElejida.innerHTML = num > 0 ? num : "";
         celdaElejida.className = "tile-abierta";
 
         if (num === 0) fillblank(celdaElejida, tiles);
 
-        let vic = checkVictoria(tiles);
+        var vic = checkVictoria(tiles);
         if (vic) {
             detenerTimer();
             vicc.innerHTML = `${nombre}: gano la partida en: ${segundos}`;
@@ -288,7 +288,7 @@ function showtile(celdaElejida, tiles){
 /**@param {HTMLElement[]} ts
  */
 function checkVictoria(ts) {
-    let celdasCerradas = ts.filter(function (celda) celda.dataset.abierta === "false" && celda.dataset.flag === "false").length;
+    var celdasCerradas = ts.filter(function (celda) {celda.dataset.abierta === "false" && celda.dataset.flag === "false"}).length;
 
     if ($("botonmodo").innerHTML === "😭" ) {
         return false;
@@ -366,7 +366,7 @@ function chording(tile, tiles) {
 function guardar(reg) {
     if (guardado) return;
     try {
-        const resultados = JSON.parse(localStorage.getItem("resultados") ?? "[]");
+        var resultados = JSON.parse(localStorage.getItem("resultados") ?? "[]");
         resultados.push(reg);
         localStorage.setItem("resultados", JSON.stringify(resultados));
         guardado = true;
@@ -391,22 +391,22 @@ function detenerTimer() {
 
 function fillblank(a, tiles){
 
-    const idParts = a.id.split('-');
-    const index = parseInt(idParts[0]) - 1;
+    var idParts = a.id.split('-');
+    var index = parseInt(idParts[0]) - 1;
 
-    const x = index % casiw;
-    const y = Math.floor(index / casiw);
+    var x = index % casiw;
+    var y = Math.floor(index / casiw);
 
-    for (let dx = -1; dx <= 1; dx++) {
-        for (let dy = -1; dy <= 1; dy++) {
+    for (var dx = -1; dx <= 1; dx++) {
+        for (var dy = -1; dy <= 1; dy++) {
             if (dx === 0 && dy === 0) continue;
 
-            const nx = x + dx;
-            const ny = y + dy;
+            var nx = x + dx;
+            var ny = y + dy;
 
             if (nx >= 0 && nx < casiw && ny >= 0 && ny < casih) {
-                const vecinoIndex = ny * casiw + nx;
-                const vecino = $((vecinoIndex + 1) + "-btn");
+                var vecinoIndex = ny * casiw + nx;
+                var vecino = $((vecinoIndex + 1) + "-btn");
                 if (vecino && vecino.dataset.abierta !== "true") {
                     showtile(vecino, tiles);
                 }
@@ -423,7 +423,7 @@ function limpiarVariables(){
     $("botonmodo").innerHTML = "☺️";
     $("bombas").innerHTML = String(minas).padStart(3, '0');
 
-    let tab = $("tablero");
+    var tab = $("tablero");
     tab.innerHTML="";
     tab.removeAttribute("hidden");
 
