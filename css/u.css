@@ -68,9 +68,12 @@ table {
 }
 
 .marcador{
-    font-size: 2.25rem;
-    line-height: 2.25rem;
-    color:oklch(63.7% 0.237 25.331);
+    background-color: #000;
+    p{
+        font-size: 2.25rem;
+        line-height: 2.25rem;
+        color:oklch(63.7% 0.237 25.331);
+    }
 }
 .botonmodo {
     font-size: 1.875rem;
@@ -149,6 +152,11 @@ table {
 
 .flex-col {
     flex-direction: column;
+}
+
+.barra-superior {
+    display:flex;
+    justify-content: space-between;
 }
 
 .boton-iniciar {
