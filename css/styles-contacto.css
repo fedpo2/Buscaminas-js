@@ -1,21 +1,21 @@
-.contact-container {
+.contacto-contenedor {
   font-size: x-large;
 }
 
-.contact-card {
+.contacto-carta {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 10px;
 }
 
-.contact-card img {
+.contacto-carta img {
   width: 100%;
   max-width: 250px;
   height: auto;
 }
 
-.contact-text {
+.contacto-texto {
   margin-top: 10px;
   border: 2px solid rgb(12, 3, 95);
   width: 100%;
@@ -52,7 +52,7 @@
     display: none;
 }
 
-#formContainer {
+#formContenedor {
   margin: 20px auto;
   padding: 15px;
   border: 2px solid #0c035f;
@@ -62,9 +62,9 @@
   border-radius: 10px;
 }
 
-#formContainer label,
-#formContainer input,
-#formContainer textarea {
+#formContenedor label,
+#formContenedor input,
+#formContenedor textarea {
   display: block;
   width: 100%;
   margin-bottom: 10px;
@@ -84,7 +84,7 @@
   border-radius: 5px;
 }
 
-.form-message {
+.form-mensaje {
   display: none;
   background-color: #f44336;
   color: white;

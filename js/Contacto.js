@@ -1,33 +1,33 @@
 document.addEventListener('DOMContentLoaded', function () {
     var toggleBtn = document.getElementById('toggleFormBtn');
-    var formContainer = document.getElementById('formContainer');
-    var contactForm = document.getElementById('contactForm');
-    var clickSound = document.getElementById('clickSound');
+    var formContenedor = document.getElementById('formContenedor');
+    var contactoForm = document.getElementById('contactoForm');
+    var clickSonido = document.getElementById('clickSonido');
 
     toggleBtn.addEventListener('click', function () {
-        formContainer.style.display = (formContainer.style.display === 'none') ? 'block' : 'none';
+        formContenedor.style.display = (formContenedor.style.display === 'none') ? 'block' : 'none';
     });
 
-    contactForm.addEventListener('submit', function (event) {
+    contactoForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        var name = document.getElementById('name').value.trim();
+        var nombre = document.getElementById('nombre').value.trim();
         var email = document.getElementById('email').value.trim();
-        var message = document.getElementById('message').value.trim();
+        var mensaje = document.getElementById('mensaje').value.trim();
 
-        var nameValid = /^[a-zA-Z0-9\s]+$/.test(name);
-        var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        var messageValid = message.length > 5;
+        var nombreValido = /^[a-zA-Z0-9\s]+$/.test(nombre);
+        var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var mensajeValido = mensaje.length > 5;
 
-        if (!nameValid) {
+        if (!nombreValido) {
             mostrarMensaje('El nombre debe ser alfanumérico.');
             return;
         }
-        if (!emailValid) {
+        if (!emailValido) {
             mostrarMensaje('El correo no es válido.');
             return;
         }
-        if (!messageValid) {
+        if (!mensajeValido) {
             mostrarMensaje('El mensaje debe tener más de 5 caracteres.');
             return;
         }
@@ -36,21 +36,21 @@ document.addEventListener('DOMContentLoaded', function () {
             "FedericoNicolas.Polidoro@alumnos.uai.edu.ar",
             "LucaTomas.Troiano@alumnos.uai.edu.ar"
         ];
-        var subject = encodeURIComponent(`Contacto de ${name}`);
-        var body = encodeURIComponent(
-            `${message}\n\nCorreo del remitente: ${email}`
+        var sujeto = encodeURIComponent(`Contacto de ${nombre}`);
+        var cuerpo = encodeURIComponent(
+            `${mensaje}\n\nCorreo del remitente: ${email}`
         );
 
-        var mailtoLink = `mailto:${to.join(",")}?subject=${subject}&body=${body}`;
+        var mailtoLink = `mailto:${to.join(",")}?subject=${sujeto}&body=${cuerpo}`;
         window.location.href = mailtoLink;
     });
 
     document.addEventListener('click', function () {
-        clickSound.currentTime = 0;
-        clickSound.play();
+        clickSonido.currentTime = 0;
+        clickSonido.play();
     });
     function mostrarMensaje(texto) {
-    var mensaje = document.getElementById('formMessage');
+    var mensaje = document.getElementById('formMensaje');
     mensaje.textContent = texto;
     mensaje.style.display = 'block';
 

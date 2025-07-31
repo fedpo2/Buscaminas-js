@@ -9,10 +9,10 @@
     <title>Pagina contacto</title>
 </head>
 <body class="body">
-    <div class="contact-container flex">
-        <div class="contact-card">
+    <div class="contacto-contenedor flex">
+        <div class="contacto-carta">
             <img src="./img/PolidoroFoto.gif" alt="Imagen 1">
-            <div class="contact-text rounded-md bg-white p-1">
+            <div class="contacto-texto rounded-md bg-white p-1">
                 <p>Nombre: Polidoro, Federico</p>
                 <p>Correo institucional: FedericoNicolas.Polidoro@alumnos.uai.edu.ar</p>
                 <p>Teléfono: 341-388-5895</p>
@@ -22,9 +22,9 @@
             </div>
         </div>
 
-        <div class="contact-card">
+        <div class="contacto-carta">
             <img src="./img/TroianoFoto.gif" alt="Imagen 2">
-            <div class="contact-text rounded-md bg-white p-1">
+            <div class="contacto-texto rounded-md bg-white p-1">
                 <p>Nombre: Troiano, Luca</p>
                 <p>Correo institucional: LucaTomas.Troiano@alumnos.uai.edu.ar</p>
                 <p>Teléfono: 341-388-7110</p>
@@ -35,23 +35,23 @@
         </div>
     </div>
     <footer class="flex-col justify-center">
-        <div id="formMessage" class="form-message"></div>
+        <div id="formMensaje" class="form-mensaje"></div>
         <button id="toggleFormBtn">Mostrar Formulario</button>
-        <div id="formContainer" style="display: none;">
-            <form id="contactForm">
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name">
+        <div id="formContenedor" style="display: none;">
+            <form id="contactoForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
                 <label for="email">Correo:</label>
                 <input type="text" id="email" name="email">
 
-                <label for="message">Mensaje:</label>
-                <textarea id="message" name="message"></textarea>
+                <label for="mensaje">Mensaje:</label>
+                <textarea id="mensaje" name="mensaje"></textarea>
 
                 <button type="submit">Enviar</button>
             </form>
         </div>
 
         <a href="index.html" class="regresar-buscaminas boton-iniciar">Regresar al Buscaminas</a>
-        <audio id="clickSound" src="./sound/SonidoClick.mp3" preload="auto"></audio>
+        <audio id="clickSonido" src="./sound/SonidoClick.mp3" preload="auto"></audio>
     </footer>
 </body>
