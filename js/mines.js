@@ -6,7 +6,7 @@
  * @param {string} id
  */
 var $ = function(id){
-    document.getElementById(id);
+    return document.getElementById(id);
 }
 
 var vicc = $("victoriadialog");
