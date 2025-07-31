@@ -20,15 +20,15 @@ document.addEventListener('DOMContentLoaded', function () {
         var messageValid = message.length > 5;
 
         if (!nameValid) {
-            alert('El nombre debe ser alfanumérico.');
+            mostrarMensaje('El nombre debe ser alfanumérico.');
             return;
         }
         if (!emailValid) {
-            alert('El correo no es válido.');
+            mostrarMensaje('El correo no es válido.');
             return;
         }
         if (!messageValid) {
-            alert('El mensaje debe tener más de 5 caracteres.');
+            mostrarMensaje('El mensaje debe tener más de 5 caracteres.');
             return;
         }
 
@@ -49,4 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
         clickSound.currentTime = 0;
         clickSound.play();
     });
+    function mostrarMensaje(texto) {
+    var mensaje = document.getElementById('formMessage');
+    mensaje.textContent = texto;
+    mensaje.style.display = 'block';
+
+    setTimeout(function () {
+        mensaje.style.display = 'none';
+    }, 8000);
+}
 });

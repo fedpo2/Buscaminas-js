@@ -83,3 +83,15 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.form-message {
+  display: none;
+  background-color: #f44336;
+  color: white;
+  padding: 12px;
+  margin: 10px auto;
+  width: fit-content;
+  border-radius: 5px;
+  font-size: large;
+  text-align: center;
+}
