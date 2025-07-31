@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const toggleBtn = document.getElementById('toggleFormBtn');
-    const formContainer = document.getElementById('formContainer');
-    const contactForm = document.getElementById('contactForm');
-    const clickSound = document.getElementById('clickSound');
+    var toggleBtn = document.getElementById('toggleFormBtn');
+    var formContainer = document.getElementById('formContainer');
+    var contactForm = document.getElementById('contactForm');
+    var clickSound = document.getElementById('clickSound');
 
     toggleBtn.addEventListener('click', function () {
         formContainer.style.display = (formContainer.style.display === 'none') ? 'block' : 'none';
@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', function () {
     contactForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var message = document.getElementById('message').value.trim();
 
-        const nameValid = /^[a-zA-Z0-9\s]+$/.test(name);
-        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        const messageValid = message.length > 5;
+        var nameValid = /^[a-zA-Z0-9\s]+$/.test(name);
+        var emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        var messageValid = message.length > 5;
 
         if (!nameValid) {
             alert('El nombre debe ser alfanumérico.');
@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const to = [
+        var to = [
             "FedericoNicolas.Polidoro@alumnos.uai.edu.ar",
             "LucaTomas.Troiano@alumnos.uai.edu.ar"
         ];
-        const subject = encodeURIComponent(`Contacto de ${name}`);
-        const body = encodeURIComponent(
+        var subject = encodeURIComponent(`Contacto de ${name}`);
+        var body = encodeURIComponent(
             `${message}\n\nCorreo del remitente: ${email}`
         );
 
-        const mailtoLink = `mailto:${to.join(",")}?subject=${subject}&body=${body}`;
+        var mailtoLink = `mailto:${to.join(",")}?subject=${subject}&body=${body}`;
         window.location.href = mailtoLink;
     });
 
