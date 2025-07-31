@@ -240,20 +240,20 @@ function flagtile(t, e) {
 /**@param {HTMLElement} celdaElejida
  * @param {HTMLElement[]} celdas
  */
-function showtile(celdaElejida, tiles){
+function showtile(celdaElejida, celdas){
     if (celdaElejida.dataset.abierta ==="true") return;
     celdaElejida.dataset.abierta = "true";
 
     iniciartimer();
 
     if (celdaElejida.dataset.mina === "true") {
-        tiles.filter(function(celda) {celda.dataset.mina === "true"}).forEach(function (celdaConBomba) {
+        celdas.filter(function(celda) {celda.dataset.mina === "true"}).forEach(function (celdaConBomba) {
             celdaConBomba.innerHTML = "💣";
             celdaConBomba.className = "explotado";
         });
 
         $("botonmodo").innerHTML = "😭";
-        tiles.forEach(function (celda)  {
+        celdas.forEach(function (celda)  {
             showtile(celda, celdas);
         });
         detenerTimer();
@@ -266,9 +266,9 @@ function showtile(celdaElejida, tiles){
         celdaElejida.innerHTML = num > 0 ? num : "";
         celdaElejida.className = "tile-abierta";
 
-        if (num === 0) fillblank(celdaElejida, tiles);
+        if (num === 0) fillblank(celdaElejida, celdas);
 
-        var vic = checkVictoria(tiles);
+        var vic = checkVictoria(celdas);
         if (vic) {
             detenerTimer();
             vicc.innerHTML = `${nombre}: gano la partida en: ${segundos}`;
@@ -301,9 +301,9 @@ function checkVictoria(ts) {
  * Función de chording - abre todos los vecinos de un tile si el número de banderas
  * alrededor coincide con el número del tile
  * @param {HTMLElement} celda - El tile sobre el que hacer chording
- * @param {HTMLElement[]} celdas - Array de todos los tiles
+ * @param {HTMLElement[]} celdas - Array de todos los
  */
-function chording(tile, tiles) {
+function chording(celda, celdas) {
     if (celda.dataset.abierta !== "true" || celda.dataset.flag === "true") return;
 
     var numero = parseInt(celda.dataset.numero);
@@ -347,7 +347,7 @@ function chording(tile, tiles) {
     }
     if (banderasVecinas === numero) {
         for (var j = 0; j < vecinosSinAbrir.length; j++) {
-            showtile(vecinosSinAbrir[j], tiles);
+            showtile(vecinosSinAbrir[j], celdas);
         }
     }
 }
@@ -389,7 +389,7 @@ function detenerTimer() {
     }
 }
 
-function fillblank(a, tiles){
+function fillblank(a, celdas){
 
     var idParts = a.id.split('-');
     var index = parseInt(idParts[0]) - 1;
@@ -408,7 +408,7 @@ function fillblank(a, tiles){
                 var vecinoIndex = ny * casiw + nx;
                 var vecino = $((vecinoIndex + 1) + "-btn");
                 if (vecino && vecino.dataset.abierta !== "true") {
-                    showtile(vecino, tiles);
+                    showtile(vecino, celdas);
                 }
             }
         }
