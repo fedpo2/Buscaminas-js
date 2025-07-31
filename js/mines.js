@@ -3,10 +3,11 @@
 // Aviso uso comentarios de jsdoc para tener tipos de dato en el "ide"
 
 /**
- * Me ahorra un monton de codigo y era visualmente menos ruidoso usar un arrow func
  * @param {string} id
  */
-var $ = (id) => document.getElementById(id);
+var $ = function(id){
+    document.getElementById(id);
+}
 
 var vicc = $("victoriadialog");
 var nameinput = $("nameinput");
@@ -38,7 +39,7 @@ var nombre = "";
 var segundos = 0;
 var timerlock = null;
 
-/**@param {Event} e*/
+/**@param {Event} event*/
 function submitForm(event) {
     event.preventDefault();
     if (nameinput.value.length < 3) {
@@ -151,7 +152,7 @@ function hacertablero() {
     if ($("nombredialog").open === true) return;
 
 //un toque de cleanup
-    reaload();
+    limpiarVariables();
 
     /**@type {HTMLElement[]} tiles*/
     let tiles = [];
@@ -169,7 +170,7 @@ function hacertablero() {
         minasIndices.add(rand);
     }
 
-    tiles.forEach((tile, index) => {
+    tiles.forEach(function (tile, index) {
         tile.dataset.mina = minasIndices.has(index).toString();
         tile.dataset.abierta = "false";
         tile.dataset.flag = "false";
@@ -186,7 +187,7 @@ function hacertablero() {
         };
     });
 
-    tiles.forEach((t, i) => {
+    tiles.forEach(function(t, i) {
         const x = i % casiw;
         const y = Math.floor(i / casiw);
         let num = 0;
@@ -236,24 +237,24 @@ function flagtile(t, e) {
     $("bombas").innerHTML = String(pantallaminas).padStart(3, '0');
 }
 
-/**@param {HTMLElement} a
- * @param {HTMLElement[]} tiles
+/**@param {HTMLElement} celdaElejida
+ * @param {HTMLElement[]} celdas
  */
-function showtile(a, tiles){
-    if (a.dataset.abierta ==="true") return;
-    a.dataset.abierta = "true";
+function showtile(celdaElejida, tiles){
+    if (celdaElejida.dataset.abierta ==="true") return;
+    celdaElejida.dataset.abierta = "true";
 
     iniciartimer();
 
-    if (a.dataset.mina === "true") {
-        tiles.filter((x) => x.dataset.mina === "true").forEach((xx) => {
-            xx.innerHTML = "💣";
-            xx.className = "explotado";
+    if (celdaElejida.dataset.mina === "true") {
+        tiles.filter(function(celda) celda.dataset.mina === "true").forEach((celdaConBomba)  {
+            celdaConBomba.innerHTML = "💣";
+            celdaConBomba.className = "explotado";
         });
 
         $("botonmodo").innerHTML = "😭";
-        tiles.forEach((x) => {
-            showtile(x, tiles);
+        tiles.forEach(function (celda)  {
+            showtile(celda, celdas);
         });
         detenerTimer();
 
@@ -261,11 +262,11 @@ function showtile(a, tiles){
         vicc.setAttribute("open", "");
 
     } else {
-        const num = parseInt(a.dataset.numero);
-        a.innerHTML = num > 0 ? num : "";
-        a.className = "tile-abierta";
+        const num = parseInt(celdaElejida.dataset.numero);
+        celdaElejida.innerHTML = num > 0 ? num : "";
+        celdaElejida.className = "tile-abierta";
 
-        if (num === 0) fillblank(a, tiles);
+        if (num === 0) fillblank(celdaElejida, tiles);
 
         let vic = checkVictoria(tiles);
         if (vic) {
@@ -287,30 +288,30 @@ function showtile(a, tiles){
 /**@param {HTMLElement[]} ts
  */
 function checkVictoria(ts) {
-    let tilesCerradas = ts.filter((tile) => tile.dataset.abierta === "false" && tile.dataset.flag === "false").length;
+    let celdasCerradas = ts.filter(function (celda) celda.dataset.abierta === "false" && celda.dataset.flag === "false").length;
 
     if ($("botonmodo").innerHTML === "😭" ) {
         return false;
     }
 
-    return tilesCerradas === Number(pantallaminas);
+    return celdasCerradas === Number(pantallaminas);
 }
 
 /**
  * Función de chording - abre todos los vecinos de un tile si el número de banderas
  * alrededor coincide con el número del tile
- * @param {HTMLElement} tile - El tile sobre el que hacer chording
- * @param {HTMLElement[]} tiles - Array de todos los tiles
+ * @param {HTMLElement} celda - El tile sobre el que hacer chording
+ * @param {HTMLElement[]} celdas - Array de todos los tiles
  */
 function chording(tile, tiles) {
-    if (tile.dataset.abierta !== "true" || tile.dataset.flag === "true") return;
+    if (celda.dataset.abierta !== "true" || celda.dataset.flag === "true") return;
 
-    var numero = parseInt(tile.dataset.numero);
+    var numero = parseInt(celda.dataset.numero);
     if (numero === 0) return;
 
     var index = -1;
-    for (var i = 0; i < tiles.length; i++) {
-        if (tiles[i] === tile) {
+    for (var i = 0; i < celdas.length; i++) {
+        if (celdas[i] === celda) {
             index = i;
             break;
         }
@@ -331,7 +332,7 @@ function chording(tile, tiles) {
 
             if (nx >= 0 && nx < casiw && ny >= 0 && ny < casih) {
                 var vecinoIndex = ny * casiw + nx;
-                var vecino = tiles[vecinoIndex];
+                var vecino = celdas[vecinoIndex];
 
                 if (vecino) {
                     if (vecino.dataset.flag === "true") {
@@ -375,7 +376,7 @@ function guardar(reg) {
 }
 function iniciartimer() {
     if (timerlock !== null) return;
-    timerlock = setInterval(() => {
+    timerlock = setInterval(function()  {
         $("tiempo").innerHTML = String(++segundos).padStart(3, '0');
     }, 1000);
 }
@@ -414,7 +415,7 @@ function fillblank(a, tiles){
     }
 }
 
-function reaload(){
+function limpiarVariables(){
     pantallaminas = minas;
     segundos = 0;
     acum = 0;
