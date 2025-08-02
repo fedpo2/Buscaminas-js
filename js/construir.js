@@ -55,11 +55,11 @@ function crearDialog() {
     inputNombre.type = 'text';
     inputNombre.value = '';
     inputNombre.minLength = 3;
-    inputNombre.className = 'border rounded-md p-1';
+    inputNombre.className = 'inputnombre';
 
     var etiquetaNombre = document.createElement('label');
     etiquetaNombre.htmlFor = 'name';
-    etiquetaNombre.className = 'ps-1';
+    etiquetaNombre.className = 'padding-etiqueta';
     etiquetaNombre.textContent = 'Ingrese su nombre';
 
     var spanErrorNombre = document.createElement('span');
@@ -67,7 +67,7 @@ function crearDialog() {
     spanErrorNombre.hidden = true;
 
     var hr1 = document.createElement('hr');
-    hr1.className = 'mt-1';
+    hr1.className = 'separador';
 
     var textoError = document.createTextNode('El nombre tiene que tener como minimo 3 letras');
     spanErrorNombre.appendChild(hr1);
@@ -82,7 +82,7 @@ function crearDialog() {
     var selector = document.createElement('select');
     selector.id = 'dificultad';
     selector.name = 'selectordificultad';
-    selector.className = 'border rounded p-1';
+    selector.className = 'dificultad';
 
     var opcionFacil = document.createElement('option');
     opcionFacil.value = 'facil';
@@ -106,7 +106,7 @@ function crearDialog() {
     selector.appendChild(opcionPersonalizado);
 
     var divOpcionesPersonalizadas = document.createElement('div');
-    divOpcionesPersonalizadas.className = 'mt-1 flex-col flex';
+    divOpcionesPersonalizadas.className = 'opciones-personalizadas';
     divOpcionesPersonalizadas.id = 'customoptions';
     divOpcionesPersonalizadas.hidden = true;
 
@@ -121,7 +121,7 @@ function crearDialog() {
     inputAlto.step = '1';
     inputAlto.min = '1';
     inputAlto.value = '8';
-    inputAlto.className = 'border p-1 mt-1 rounded';
+    inputAlto.className = 'input-alto';
 
     var etiquetaAncho = document.createElement('label');
     etiquetaAncho.htmlFor = 'ancho';
@@ -134,7 +134,7 @@ function crearDialog() {
     inputAncho.min = '1';
     inputAncho.step = '1';
     inputAncho.value = '8';
-    inputAncho.className = 'border p-1 rounded';
+    inputAncho.className = 'input-personalizado';
 
     var etiquetaMinas = document.createElement('label');
     etiquetaMinas.htmlFor = 'minas';
@@ -146,7 +146,7 @@ function crearDialog() {
     inputMinas.type = 'number';
     inputMinas.step = '1';
     inputMinas.value = '10';
-    inputMinas.className = 'border p-1 rounded';
+    inputMinas.className = 'input-personalizado';
 
     divOpcionesPersonalizadas.appendChild(etiquetaAlto);
     divOpcionesPersonalizadas.appendChild(inputAlto);
@@ -188,10 +188,10 @@ function crearDialog() {
     hr5.className = 'separador';
 
     var divInferior = document.createElement('div');
-    divInferior.className = 'flex justify-between';
+    divInferior.className = 'barra-superior';
 
     var divIzquierdo = document.createElement('div');
-    divIzquierdo.className = 'flex gap-2';
+    divIzquierdo.className = 'contenedor-dinamico-espaciado';
 
     var enlaceContacto = document.createElement('a');
     enlaceContacto.href = './Contacto.html';
