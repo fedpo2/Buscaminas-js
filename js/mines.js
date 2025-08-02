@@ -256,7 +256,7 @@ function showtile(celdaElejida, celdas){
     iniciartimer();
 
     if (celdaElejida.dataset.mina === "true") {
-        celdas.filter(function(celda) {celda.dataset.mina === "true"}).forEach(function (celdaConBomba) {
+        celdas.filter(function(celda) {return celda.dataset.mina === "true"}).forEach(function (celdaConBomba) {
             celdaConBomba.innerHTML = "💣";
             celdaConBomba.className = "explotado";
         });
