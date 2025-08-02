@@ -141,8 +141,8 @@ hr {
     display: none !important;
 }
 
-.tile {
-    background-color: var(--bg-tile);
+.celda {
+    background-color: var(--bg-celda);
     padding: 0.25rem;
     margin: 0.25rem;
     border-radius: 0.25rem;
@@ -154,12 +154,12 @@ hr {
     transition: background-color 0.15s ease-in-out;
 }
 
-.tile:hover {
-    background-color: var(--bg-tile-hover);
+.celda:hover {
+    background-color: var(--bg-celda-hover);
 }
 
-.tile:active {
-    background-color: var(--bg-tile-active);
+.celda:active {
+    background-color: var(--bg-celda-active);
 }
 
 .explotado {
@@ -177,7 +177,7 @@ hr {
         0 1px 2px -1px rgba(0, 0, 0, 0.06);
 }
 
-.tile-abierta {
+.celda-abierta {
     background-color: #bfdbfe;
     padding: 0.25rem;
     margin: 0.25rem;
@@ -200,9 +200,9 @@ button{
 :root {
     --bg-dialog: white;
     --bg-body: #c0c0c0;
-    --bg-tile: #f2f2f2;
-    --bg-tile-hover: #d1d1d1;
-    --bg-tile-active: #a1a1a1;
+    --bg-celda: #f2f2f2;
+    --bg-celda-hover: #d1d1d1;
+    --bg-celda-active: #a1a1a1;
     --bg-botonmodo: #717171;
     --bg-botonmodo-hover: #b2b2b2;
     --bg-botonmodo-active: #929292;
@@ -216,9 +216,9 @@ button{
 body[dark] {
     --bg-dialog: #444444;
     --bg-body: #1e1e1e;
-    --bg-tile: #2d2d2d;
-    --bg-tile-hover: #3d3d3d;
-    --bg-tile-active: #1f1f1f;
+    --bg-celda: #2d2d2d;
+    --bg-celda-hover: #3d3d3d;
+    --bg-celda-active: #1f1f1f;
     --bg-botonmodo: #444444;
     --bg-botonmodo-hover: #555555;
     --bg-botonmodo-active: #333333;

@@ -164,39 +164,39 @@ function hacertablero() {
     limpiarVariables();
 
     /**@type {HTMLElement[]} tiles*/
-    var tiles = [];
+    var celdas = [];
 
     for (var i = casih * casiw; i > 0 ;i-- ) {
         var a = document.createElement("button");
         a.id=++acum + "-btn";
-        a.className = "tile";
-        tiles.push(a);
+        a.className = "celda";
+        celdas.push(a);
     }
 
     var minasIndices = new Set();
     while (minasIndices.size < minas) {
-        var rand = Math.floor(Math.random() * tiles.length);
+        var rand = Math.floor(Math.random() * celdas.length);
         minasIndices.add(rand);
     }
 
-    tiles.forEach(function (tile, index) {
-        tile.dataset.mina = minasIndices.has(index).toString();
-        tile.dataset.abierta = "false";
-        tile.dataset.flag = "false";
-        tile.onclick = function(){
-            showtile(tile, tiles);
+    celdas.forEach(function (celda, index) {
+        celda.dataset.mina = minasIndices.has(index).toString();
+        celda.dataset.abierta = "false";
+        celda.dataset.flag = "false";
+        celda.onclick = function(){
+            showcelda(celda, celdas);
         };
-        tile.oncontextmenu = function (event) {
-            flagtile(tile, event);
+        celda.oncontextmenu = function (event) {
+            flagcelda(celda, event);
         };
-        tile.onmousedown = function (event) {
+        celda.onmousedown = function (event) {
             if (event.buttons === 3) {
-            chording(tile, tiles);
+            chording(celda, celdas);
             }
         };
     });
 
-    tiles.forEach(function(t, i) {
+    celdas.forEach(function(t, i) {
         var x = i % casiw;
         var y = Math.floor(i / casiw);
         var num = 0;
@@ -208,7 +208,7 @@ function hacertablero() {
                 var ny = y + dy;
                 if (nx >= 0 && nx < casiw && ny >= 0 && ny < casih) {
                     var vecinoIndex = ny * casiw + nx;
-                    if (tiles[vecinoIndex].dataset.mina === "true") {
+                    if (celdas[vecinoIndex].dataset.mina === "true") {
                         num++;
                     }
                 }
@@ -221,15 +221,15 @@ function hacertablero() {
     tablero.style.display = "grid";
     tablero.style.gridTemplateColumns= `repeat(${casiw}, minmax(0,1fr))`;
 
-    for (var i = 0; i < tiles.length; i++) {
-        tablero.appendChild(tiles[i]);
+    for (var i = 0; i < celdas.length; i++) {
+        tablero.appendChild(celdas[i]);
     }
 }
 
 /**@param {HTMLElement} t
  * @param {Event} e
  */
-function flagtile(t, e) {
+function flagcelda(t, e) {
     e.preventDefault();
 
     if (t.dataset.abierta === "true") return;
@@ -249,7 +249,7 @@ function flagtile(t, e) {
 /**@param {HTMLElement} celdaElejida
  * @param {HTMLElement[]} celdas
  */
-function showtile(celdaElejida, celdas){
+function showcelda(celdaElejida, celdas){
     if (celdaElejida.dataset.abierta ==="true") return;
     celdaElejida.dataset.abierta = "true";
 
@@ -263,7 +263,7 @@ function showtile(celdaElejida, celdas){
 
         $("botonmodo").innerHTML = "😭";
         celdas.forEach(function (celda)  {
-            showtile(celda, celdas);
+            showcelda(celda, celdas);
         });
         detenerTimer();
 
@@ -273,7 +273,7 @@ function showtile(celdaElejida, celdas){
     } else {
         var num = parseInt(celdaElejida.dataset.numero);
         celdaElejida.innerHTML = num > 0 ? num : "";
-        celdaElejida.className = "tile-abierta";
+        celdaElejida.className = "celda-abierta";
 
         if (num === 0) fillblank(celdaElejida, celdas);
 
@@ -366,7 +366,7 @@ function chording(celda, celdas) {
     }
     if (banderasVecinas === numero) {
         for (var j = 0; j < vecinosSinAbrir.length; j++) {
-            showtile(vecinosSinAbrir[j], celdas);
+            showcelda(vecinosSinAbrir[j], celdas);
         }
     }
 }
@@ -427,7 +427,7 @@ function fillblank(a, celdas){
                 var vecinoIndex = ny * casiw + nx;
                 var vecino = $((vecinoIndex + 1) + "-btn");
                 if (vecino && vecino.dataset.abierta !== "true") {
-                    showtile(vecino, celdas);
+                    showcelda(vecino, celdas);
                 }
             }
         }
