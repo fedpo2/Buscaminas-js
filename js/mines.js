@@ -280,7 +280,12 @@ function showtile(celdaElejida, celdas){
         var vic = checkVictoria(celdas);
         if (vic) {
             detenerTimer();
+            var btnReinicio = document.createElement("button");
+            btnReinicio.textContent = "Volver al menu principal";
+            btnReinicio.onclick = volver;
+
             vicc.innerHTML = `${nombre}: gano la partida en: ${segundos}`;
+            vicc.appendChild(btnReinicio);
             vicc.setAttribute("open", "");
 
             guardar({
@@ -293,11 +298,16 @@ function showtile(celdaElejida, celdas){
 
 }
 
+function volver(){
+    tablero.innerHTML = "";
+    nombredialog.toggleAttribute("open");
+    vicc.toggleAttribute("open");
+}
 
 /**@param {HTMLElement[]} ts
  */
 function checkVictoria(ts) {
-    var celdasCerradas = ts.filter(function (celda) {celda.dataset.abierta === "false" && celda.dataset.flag === "false"}).length;
+    var celdasCerradas = ts.filter(function (celda) {return celda.dataset.abierta === "false" && celda.dataset.flag === "false"}).length;
 
     if ($("botonmodo").innerHTML === "😭" ) {
         return false;
