@@ -70,7 +70,7 @@ function submitForm(event) {
 
     nombre = nameinput.value;
     setDificultad();
-    hacertablero();
+    hacertablerofalso();
 
 }
 
@@ -157,7 +157,38 @@ function cambiarModo() {
 
 }
 
-function hacertablero() {
+function hacertablerofalso() {
+    if ($("nombredialog").open === true) return;
+    limpiarVariables();
+
+    /**@type {HTMLElement[]} tiles*/
+    var tiles = [];
+
+    for (var i = casih * casiw; i > 0; i--) {
+        var a = document.createElement("button");
+        a.id = ++acum + "-btn";
+        a.className = "tile";
+
+        a.onclick = function () {
+            var indice = parseInt(this.id) - 1;
+            tablero.innerHTML = "";
+            hacertablero(indice);
+            $(this.id).click();
+        };
+
+        tiles.push(a);
+    }
+
+    tablero.style.marginTop = "1rem";
+    tablero.style.display = "grid";
+    tablero.style.gridTemplateColumns = `repeat(${casiw}, minmax(0,1fr))`;
+
+    for (var i = 0; i < tiles.length; i++) {
+        tablero.appendChild(tiles[i]);
+    }
+}
+
+function hacertablero(celdaApretada) {
     if ($("nombredialog").open === true) return;
 
 //un toque de cleanup
@@ -176,6 +207,7 @@ function hacertablero() {
     var minasIndices = new Set();
     while (minasIndices.size < minas) {
         var rand = Math.floor(Math.random() * celdas.length);
+        if (celdaApretada !== undefined && rand === celdaApretada) continue;
         minasIndices.add(rand);
     }
 
