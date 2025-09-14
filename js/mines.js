@@ -1,6 +1,7 @@
 "use strict";
 
-// Aviso uso comentarios de jsdoc para tener tipos de dato en el "ide"
+// Aviso uso comentarios de jsdoc para tener tipos de dato en el ide
+
 
 /**
  * @param {string} id
