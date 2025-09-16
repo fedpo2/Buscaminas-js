@@ -19,7 +19,7 @@ function crearBarraSuperior() {
     boton.id = 'botonmodo';
     boton.className = 'botonmodo';
     boton.textContent = '☺️';
-    boton.onclick = hacertablero;
+    boton.onclick = hacertablerofalso;
 
     divBoton.appendChild(boton);
 
@@ -260,10 +260,10 @@ function crearVictoriaDiag() {
 }
 
 function crearContenedorTablero() {
-    var contenedor = document.createElement("div")
+    var contenedor = document.createElement("div");
     contenedor.className = "tableroContenedor";
 
-    var tablero = document.createElement("div")
+    var tablero = document.createElement("div");
     tablero.id ="tablero";
 
     contenedor.appendChild(tablero);
