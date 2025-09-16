@@ -168,7 +168,7 @@ function hacertablerofalso() {
     for (var i = casih * casiw; i > 0; i--) {
         var a = document.createElement("button");
         a.id = ++acum + "-btn";
-        a.className = "tile";
+        a.className = "celda";
 
         a.onclick = function () {
             var indice = parseInt(this.id) - 1;
