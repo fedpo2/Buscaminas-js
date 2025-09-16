@@ -161,7 +161,7 @@ function crearDialog() {
     divErrorPersonalizado.hidden = true;
 
     var hr3 = document.createElement('hr');
-    var textoErrorPersonalizado = document.createTextNode('No puede haber más minas que tiles.');
+    var textoErrorPersonalizado = document.createTextNode('No puede haber más minas que celdas.');
     divErrorPersonalizado.appendChild(hr3);
     divErrorPersonalizado.appendChild(textoErrorPersonalizado);
 
