@@ -206,12 +206,12 @@ function crearDialog() {
 
     var enlaceCodigo = document.createElement('a');
     enlaceCodigo.href = 'https://github.com/fedpo2/Buscaminas-js/';
-    enlaceCodigo.className = "botonmodo";
     enlaceCodigo.target = '_blank';
     enlaceCodigo.title = 'Codigo';
 
     var imagenCodigo = document.createElement('img');
     imagenCodigo.alt = 'codigo';
+    imagenCodigo.className = "botonmodo";
     imagenCodigo.src = './img/code.svg';
     enlaceCodigo.appendChild(imagenCodigo);
 
